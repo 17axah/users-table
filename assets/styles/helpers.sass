@@ -1,0 +1,38 @@
+@use 'variables' as *
+@use 'mixins' as *
+
+.text-primary
+  color: $color-primary
+
+.text-success
+  color: $color-success
+
+.text-error
+  color: $color-error
+
+.row
+  display: flex
+  box-sizing: border-box
+  flex: 0 1 auto
+  flex-direction: row
+  flex-wrap: wrap
+
+.row > [class*=col-]
+  box-sizing: border-box
+
+.col-auto
+  flex-grow: 1
+  flex-basis: 0
+  max-width: 100%
+
+@include gutters()
+@include columns()
+@include spaces()
+@include alignment()
+
+@each $bp, $size in $breakpoints
+  @media (min-width: $size)
+    @include gutters($bp)
+    @include columns($bp)
+    @include spaces($bp)
+    @include alignment($bp)

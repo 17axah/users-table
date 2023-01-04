@@ -1,0 +1,92 @@
+@use 'variables' as *
+
+@mixin columns($breakpoint: false)
+  $breakpoint: if($breakpoint,'-#{$breakpoint}','')
+
+  @for $i from 1 through $columns
+    .col#{$breakpoint}-#{$i}
+      flex-basis: calc(100 / ($columns / $i) ) * 1%
+      max-width: calc(100 / ($columns / $i) ) * 1%
+
+@mixin gutters($breakpoint: false)
+  $breakpoint: if($breakpoint,'-#{$breakpoint}','')
+
+  @each $gutter in $gutters
+    .gutter#{$breakpoint}-#{$gutter}
+      margin-left: -#{$gutter}px
+      margin-right: -#{$gutter}px
+
+    .gutter#{$breakpoint}-#{$gutter} > [class*=col-]
+        padding-left: #{$gutter}px
+        padding-right: #{$gutter}px
+
+@mixin alignment($breakpoint: false)
+  $breakpoint: if($breakpoint,'-#{$breakpoint}','')
+
+  @each $alignment in $items-alignment
+    .items#{$breakpoint}-#{$alignment}
+      align-items: $alignment
+
+  @each $alignment in $content-alignment
+    .content#{$breakpoint}-#{$alignment}
+      justify-content: $alignment
+
+  @each $alignment in $text-alignment
+    .text#{$breakpoint}-#{$alignment}
+      text-align: $alignment
+
+@mixin spaces($breakpoint: false)
+  $breakpoint: if($breakpoint,'-#{$breakpoint}','')
+
+  @each $space in $spaces
+    .ma#{$breakpoint}-#{$space}
+      margin: #{$space}px
+    .mt#{$breakpoint}-#{$space}
+      margin-top: #{$space}px
+    .mb#{$breakpoint}-#{$space}
+      margin-bottom: #{$space}px
+    .ml#{$breakpoint}-#{$space}
+      margin-left: #{$space}px
+    .mr#{$breakpoint}-#{$space}
+      margin-right: #{$space}px
+    .mv#{$breakpoint}-#{$space}
+      margin-top: #{$space}px
+      margin-bottom: #{$space}px
+    .mh#{$breakpoint}-#{$space}
+      margin-left: #{$space}px
+      margin-right: #{$space}px
+
+    .n-ma#{$breakpoint}-#{$space}
+      margin: -#{$space}px
+    .n-mt#{$breakpoint}-#{$space}
+      margin-top: -#{$space}px
+    .n-mb#{$breakpoint}-#{$space}
+      margin-bottom: -#{$space}px
+    .n-ml#{$breakpoint}-#{$space}
+      margin-left: -#{$space}px
+    .n-mr#{$breakpoint}-#{$space}
+      margin-right: -#{$space}px
+    .n-mv#{$breakpoint}-#{$space}
+      margin-top: -#{$space}px
+      margin-bottom: -#{$space}px
+    .n-mh#{$breakpoint}-#{$space}
+      margin-left: -#{$space}px
+      margin-right: -#{$space}px
+
+  @each $space in $spaces
+    .pa#{$breakpoint}-#{$space}
+      padding: #{$space}px
+    .pt#{$breakpoint}-#{$space}
+      padding-top: #{$space}px
+    .pb#{$breakpoint}-#{$space}
+      padding-bottom: #{$space}px
+    .pl#{$breakpoint}-#{$space}
+      padding-left: #{$space}px
+    .pr#{$breakpoint}-#{$space}
+      padding-right: #{$space}px
+    .pv#{$breakpoint}-#{$space}
+      padding-top: #{$space}px
+      padding-bottom: #{$space}px
+    .ph#{$breakpoint}-#{$space}
+      padding-left: #{$space}px
+      padding-right: #{$space}px
